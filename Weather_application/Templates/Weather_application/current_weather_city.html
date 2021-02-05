@@ -47,13 +47,13 @@
       {% block weather_info %}
       <div class="card">
         <div class ="card-body">
-          <h4><span class="badge-primary">Temperatuur:</span> {{current_temperature}} graden Celsius</h4>
-          <h4><span class="badge-primary">Weersomstandigheid:</span> {{current_circumstance}}</h4>
-          <h4><span class="badge-primary">UV-index:</span> {{current_uvi}}</h4>
-          <h4><span class="badge-primary">luchtvochtigheid:</span> {{current_humidity}}%</h4>
-          <h4><span class="badge-primary">Windsnelheid:</span> {{current_windspeed}} km/uur</h4>
-          <h4><span class="badge-primary">Windrichting:</span> {{current_winddirection}}</h4>
-          <h4><span class="badge-primary">Kleurcode:</span> {{current_colour_code}}</h4>
+          <h4><span class="badge-primary label">Temperatuur:</span> {{current_temperature}} graden Celsius</h4>
+          <h4><span class="badge-primary label">Weersomstandigheid:</span> {{current_circumstance}}</h4>
+          <h4><span class="badge-primary label">UV-index:</span> {{current_uvi}}</h4>
+          <h4><span class="badge-primary label">Luchtvochtigheid:</span> {{current_humidity}}%</h4>
+          <h4><span class="badge-primary label">Windsnelheid:</span> {{current_windspeed}} km/uur</h4>
+          <h4><span class="badge-primary label">Windrichting:</span> {{current_winddirection}}</h4>
+          <h4><span class="badge-primary label">Kleurcode:</span> {{current_colour_code}}</h4>
         </div>
       </div>
        {% endblock %}
@@ -62,17 +62,17 @@
             {% block right_card %}
      <div class="rightcolumn">
       <div class="card">
-          <h6><span class="badge-primary">Huidige tijd:</span> {{current_time}}</h6>
+          <h6><span class="badge-primary label">Huidige tijd:</span> {{current_time}}</h6>
           <h4><img src="http://openweathermap.org/img/w/{{current_icon}}.png" alt="image" style="width: 100px"></h4>
-          <h6><span class="badge-primary">Kledingadvies:</span> {{current_clothing_advice}}</h6>
+          <h6><span class="badge-primary label">Kledingadvies:</span> {{current_clothing_advice}}</h6>
           <br>
-          <h6><span class="badge-primary">Accessoire advies:</span> {{current_wearables_advice}}</h6>
+          <h6><span class="badge-primary label">Accessoire advies:</span> {{current_wearables_advice}}</h6>
           <br>
-          <h6><span class="badge-primary">Zonnebrandadvies:</span> {{current_sunscreen_advice}}</h6>
+          <h6><span class="badge-primary label">Zonnebrandadvies:</span> {{current_sunscreen_advice}}</h6>
           <br>
-          <h6><span class="badge-primary">Buitensportadvies:</span> {{current_outdoor_sport_advice}}</h6>
-          <h6><span class="badge-primary">Strandadvies:</span> {{current_beach_advice}}</h6>
-          <h6><span class="badge-primary">Wintersportadvies:</span> {{current_wintersport_advice}}</h6>
+          <h6><span class="badge-primary label">Buitensportadvies:</span> {{current_outdoor_sport_advice}}</h6>
+          <h6><span class="badge-primary label">Strandadvies:</span> {{current_beach_advice}}</h6>
+          <h6><span class="badge-primary label">Wintersportadvies:</span> {{current_wintersport_advice}}</h6>
 
       </div>
     </div>
