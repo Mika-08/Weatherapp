@@ -1,0 +1,20 @@
+<!-- File for the page not found page -->
+
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Plaats niet gevonden</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'current_page1/style.css' %}">
+</head>
+
+<body>
+
+    <h1>Oh Noes! Deze plaats is niet gevonden...</h1>
+    <h3><a href="{% url 'home' %}">Klik hier om terug te keren</a></h3>
+        <img src="https://lh3.google.com/pw/ACtC-3cLTUXeCKscmdGAIpCCR2lj2-iGxaW9kwD6TO2d6-hJK-orkIyUxemECb8F3k0PQikX9RV7cJ_ABdsckE9Qq0BxF6-2Kg=s500-no?authuser=0" alt="image" style="width: 500px float: center" >
+
+</body>
+</html>

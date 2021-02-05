@@ -1,0 +1,83 @@
+<!-- File for current weather page where the base.html is implemented -->
+
+{% extends "Weather_application/Base.html" %}
+
+  {% block title %}
+  <title>
+    Huidig weerbeeld
+  </title>
+  {% endblock %}
+
+
+<!--***************************************************************-->
+
+  {% block navbar %}
+  <div class="header-right">
+    <a class="active" href="{% url 'home' %}">Huidig weerbeeld</a>
+    <a href="{% url 'weekly-forecast' %}">Zevendaags weerbeeld</a>
+    <a href="{% url 'rain' %}">Regengrafiek</a>
+  </div>
+  {% endblock %}
+
+
+<!--***************************************************************-->
+
+      {% block info_card %}
+      <div class="card">
+        <p>
+          Welkom op onze website! In de onderstaande zoekbalk kunt u de gewenste stad invoeren voor de actuele weersinformatie.
+        </p>
+      </div>
+      {% endblock %}
+
+
+        {% block form %}
+          <form action="/current_city/" method="post" class="col-md">
+            {% csrf_token %}
+            <div class="import-group">
+              <input id="" type="text" class="form-control" name="city_name" placeholder="Kies je plaatsnaam: ">
+              <div class="input-group-btn">
+                <button type="submit" class="btn btn-primary">Zoek</button>
+              </div>
+            </div>
+          </form>
+          {% endblock %}
+
+
+      {% block weather_info %}
+      <div class="card">
+        <div class ="card-body">
+          <h4><span class="badge-primary">Temperatuur:</span> {{current_temperature}} graden Celsius</h4>
+          <h4><span class="badge-primary">Weersomstandigheid:</span> {{current_circumstance}}</h4>
+          <h4><span class="badge-primary">UV-index:</span> {{current_uvi}}</h4>
+          <h4><span class="badge-primary">luchtvochtigheid:</span> {{current_humidity}}%</h4>
+          <h4><span class="badge-primary">Windsnelheid:</span> {{current_windspeed}} km/uur</h4>
+          <h4><span class="badge-primary">Windrichting:</span> {{current_winddirection}}</h4>
+          <h4><span class="badge-primary">Kleurcode:</span> {{current_colour_code}}</h4>
+        </div>
+      </div>
+       {% endblock %}
+
+
+            {% block right_card %}
+     <div class="rightcolumn">
+      <div class="card">
+          <h6><span class="badge-primary">Huidige tijd:</span> {{current_time}}</h6>
+          <h4><img src="http://openweathermap.org/img/w/{{current_icon}}.png" alt="image" style="width: 100px"></h4>
+          <h6><span class="badge-primary">Kledingadvies:</span> {{current_clothing_advice}}</h6>
+          <br>
+          <h6><span class="badge-primary">Accessoire advies:</span> {{current_wearables_advice}}</h6>
+          <br>
+          <h6><span class="badge-primary">Zonnebrandadvies:</span> {{current_sunscreen_advice}}</h6>
+          <br>
+          <h6><span class="badge-primary">Buitensportadvies:</span> {{current_outdoor_sport_advice}}</h6>
+          <h6><span class="badge-primary">Strandadvies:</span> {{current_beach_advice}}</h6>
+          <h6><span class="badge-primary">Wintersportadvies:</span> {{current_wintersport_advice}}</h6>
+
+      </div>
+    </div>
+            {% endblock %}
+
+
+<!--***************************************************************-->
+

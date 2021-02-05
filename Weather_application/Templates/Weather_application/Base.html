@@ -1,0 +1,79 @@
+<!-- Base HTML file to extend the other files with -->
+
+
+<!DOCTYPE html>
+<html xmlns:https="http://www.w3.org/1999/xhtml">
+{% load static %}
+
+<head>
+{% block title %} {% endblock %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Weather application">
+  <meta name="keywords" content="Weather application">
+  <meta name="author" content="Coen Buitink">
+  <meta name="author" content="Yue Kroeze">
+  <script src = "https://cdn.zingchart.com/zingchart.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.3/cerulean/bootstrap.min.css" integrity="sha512-dQLT/B7byn2LjN/DN4zeBKpwGV6qbidV0XiMRWQOL7TGrV7FkZFldkGG+DGMU+CQnMTcRZlUI7GMWt1j6akNew==" crossorigin="anonymous" />
+<link rel="stylesheet" type="text/css" href="{% static 'Weather_application/style.css' %}">
+
+
+<!--***************************************************************-->
+<header>
+
+<div class="header">
+  <a href="{% url 'home' %}" class="logo">
+    <img src="https://lh3.googleusercontent.com/5I3NWWE9Vv9fSP2N1OdJQJHfzdFK1H-GF8Z-079slWTPM6KCWoekeBCwP7mSAetD5IQOdHHp4MDjV7n7N7DGrKJ_IhPifXM1gXMOkBdkWrnTepmUQ_d8QjPVXCsnaThRWR5y1cqUcvXRGYsGoA5ru-14ETDR8-UuaCVYgGO7Vn85qkSzFRXhfKxmjgmoyzJNGDPP0STjMDyD5Jwj1CSmlL-cE_CRengYdtojpON-KcqsigCJMXLSDy9cxYK3ME3WdXCnndwh_X_q3h8xfcgzsVkvtE23sdQ22qWQgfgBBQiikUYinro9Qo2S8kS1lecFO_aE0lAXEBgBnYePvPYtqzaqvcGjTNRLF4bKqg5Tog_2k6nPRtiywtSY5w9avUoiQuS6QV8dFJ8eVB2l7qUiIyJuOSAe878jI0jt8B0PxmYWBBUuzhXgT-YRxNR1nNzWclevfmZF7xOoag3JtPtoc2y_BRKUXyftGRMpSZVzaJuLKwW2EVqLlG9HQsXi2dRI-gekq8RXAXEmZ-TJBDrMujVCZpGV9t4g01W0lUNC89YMWxybz8pusdheZFuYxjzYYI3u3pQQx6vC_t_ti0N22qo0sd4720xvdALIa3Fe4Cdr1eQPeaDCgDQdV25hGwib71GU5RfUZCDTdwmCq-Yl2fqPq8-GiMxXHc7pb5IlNGpxr5TMMSOE2Dv6-3sc=s768-no?authuser=0">
+  </a>
+  <div class="header-text">
+      <h1>WEERgaloos </h1>
+  </div>
+
+{% block navbar %} {% endblock %}
+
+</div>
+</header>
+
+<!--***************************************************************-->
+<body>
+
+<div class="container">
+  <div class="row">
+    <div class="leftcolumn">
+
+    {% block info_card %} {% endblock %}
+
+      <div class="card">
+        <nav class="navbar navbar-expand-1g navbar dark bg-primary">
+
+          {% block form %} {% endblock %}
+
+        </nav>
+      </div>
+
+        {% block weather_info %} {% endblock %}
+
+
+    </div>
+
+
+        {% block right_card %} {% endblock %}
+
+
+
+  </div>
+</div>
+
+<br><br>
+
+</body>
+<!--***************************************************************-->
+
+
+<footer>
+  <p>
+    (c) 2021
+  </p>
+</footer>
+
+</html>

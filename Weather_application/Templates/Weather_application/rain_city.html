@@ -1,0 +1,100 @@
+<!-- File for radar page where the base.html is implemented -->
+
+{% extends "Weather_application/Base.html" %}
+
+  {% block title %}
+  <title>
+    Weerradars
+  </title>
+
+{% endblock %}
+<!--***************************************************************-->
+
+  {% block navbar %}
+  <div class="header-right">
+    <a href="{% url 'home' %}">Huidig weerbeeld</a>
+    <a href="{% url 'weekly-forecast' %}">Zevendaags weerbeeld</a>
+    <a class="active" href="{% url 'rain' %}">Regengrafiek</a>
+  </div>
+  {% endblock %}
+
+<!--***************************************************************-->
+
+          {% block form %}
+          <form action="/rain_city/" method="post" class="col-md">
+            {% csrf_token %}
+            <div class="import-group">
+              <input id="" type="text" class="form-control" name="city_name" placeholder="Kies je plaatsnaam: ">
+              <div class="input-group-btn">
+                <button type="submit" class="btn btn-primary">Zoek</button>
+              </div>
+            </div>
+          </form>
+          {% endblock %}
+
+
+        {% block weather_info %}
+        <div class="leftcollumn">
+            <div class="card">
+                <h3><span class="badge-primary">Regengrafiek:</span> {{name_place}}</h3>
+            </div>
+
+            <div class="card">
+                <div id = "rain_chart"></div>
+
+                <script>
+                  // The data is all stored in a dictionary.
+                  var chartData = {
+                    type: "bar",
+                    scaleX:{
+                          label: {
+                          text: "Uren"
+                          },
+
+                          "values": [
+                            {{first_hour_time}}, {{third_hour_time}}, {{fifth_hour_time}}, {{seventh_hour_time}},
+                            {{ninth_hour_time}}, {{eleventh_hour_time}}, {{thirteenth_hour_time}}, {{fifteenth_hour_time}},
+                            {{nineteenth_hour_time}}, {{twenty_first_hour_time}}, {{twenty_third_hour_time}}
+                          ]
+                    },
+
+                    scaleY: {
+                          label: {
+                          text: "Neerslag (mm)"
+                          }
+                    },
+
+                    series: [
+                                  {
+                                    "values": [
+                                      {{first_hour_rain}}, {{third_hour_rain}}, {{fifth_four_rain}}, {{seventh_hour_rain}},
+                                      {{ninth_hour_rain}}, {{eleventh_hour_rain}}, {{thirteenth_hour_rain}},
+                                      {{fifteenth_hour_rain}}, {{seventeenth_hour_rain}}, {{nineteenth_hour_rain}},
+                                      {{twenty_first_hour_rain}}, {{twenty_third_hour_rain}}
+                                    ]
+                                  }
+                              ]
+                    }
+
+                  // Render the data from the graph into the library and diplay on the page
+                  zingchart.render({
+                    id: "rain_chart",
+                    data: chartData,
+                  });
+
+                </script>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="rightcollumn">
+            <div class="card">
+                <img src="{{rain_image}}">
+            </div>
+        </div>
+
+        {% endblock %}
+
+
+<!--***************************************************************-->

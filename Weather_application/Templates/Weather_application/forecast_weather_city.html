@@ -1,0 +1,154 @@
+<!-- File for forecast weather page where the base.html is implemented -->
+
+{% extends "Weather_application/Base.html" %}
+
+  {% block title %}
+  <title>
+    Weersvoorspelling
+  </title>
+  {% endblock %}
+
+
+<!--***************************************************************-->
+
+  {% block navbar %}
+  <div class="header-right">
+    <a href="{% url 'home' %}">Huidig weerbeeld</a>
+    <a class="active" href="{% url 'weekly-forecast' %}">Zevendaags weerbeeld</a>
+    <a href="{% url 'rain' %}">Regengrafiek</a>
+  </div>
+  {% endblock %}
+
+
+<!--***************************************************************-->
+
+      {% block info_card %}
+      <div class="card">
+        <p>
+          Welkom op onze website! In de onderstaande zoekbalk kunt u de gewenste stad invoeren voor de weersvoorspelling.
+        </p>
+      </div>
+      {% endblock %}
+
+        {% block form %}
+          <form action="/rain_city/" method="post" class="col-md">
+            {% csrf_token %}
+            <div class="import-group">
+              <input id="" type="text" class="form-control" name="city_name" placeholder="Kies je plaatsnaam: ">
+              <div class="input-group-btn">
+                <button type="submit" class="btn btn-primary">Zoek</button>
+              </div>
+            </div>
+          </form>
+          {% endblock %}
+
+
+  {% block weather_info %}
+
+
+            <div class="slideshow-container">
+
+                {% for data in all_data %}
+
+                <div class="mySlides">
+                    <div class="card">
+                      <h3><span class="badge-primary label">Dag van de week:</span> {{data.day}}</h3>
+                    </div>
+
+                    <div class="card">
+                      <h4><span class="badge-primary label">Verwachte temperatuur:</span> {{data.forecast_temperature}} graden Celsius</h4>
+                      <h4><span class="badge-primary label ">Verwachte luchtvochtigheid:</span> {{data.forecast_humidity}}%</h4>
+                      <h4><span class="badge-primary label">Verwachte weersomstandigheid:</span> {{data.forecast_circumstance}}
+                      <img src="http://openweathermap.org/img/w/{{data.forecast_icon}}.png" alt="image" style="width: 100px"></h4>
+                      <h4><span class="badge-primary label">Verwachte UV-index:</span> {{data.forecast_uvi}}</h4>
+                      <h4><span class="badge-primary label">Verwachte Windrichting:</span> {{data.forecast_winddegree}}</h4>
+                      <h4><span class="badge-primary label">Verwachte windsnelheid:</span> {{data.forecast_windspeed}} km/uur </h4>
+                    </div>
+
+                    <div class="card">
+                      <h4><span class="badge-primary label">Kledingadvies:</span> {{data.forecast_clothing_advice}} </h4>
+                      <h4><span class="badge-primary label">Accessoire advies:</span> {{data.forecast_wearables_advice}} </h4>
+                      <h4><span class="badge-primary label">Zonnebrandadvies:</span> {{data.forecast_sunscreen_advice}} </h4>
+                      <br>
+                      <h4><span class="badge-primary label">Buitensportadvies:</span> {{data.forecast_outdoor_sport_advice}} </h4>
+                      <h4><span class="badge-primary label">Strandadvies:</span> {{data.forecast_beach_advice}} </h4>
+                      <h4><span class="badge-primary label">Wintersportadvies:</span> {{data.forecast_wintersport_advice}} </h4>
+                    </div>
+                </div>
+
+                {% endfor %}
+
+
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+            </div>
+            <br>
+
+            <div style="text-align:center">
+              <span class="dot" onclick="currentSlide(1)"></span>
+              <span class="dot" onclick="currentSlide(2)"></span>
+              <span class="dot" onclick="currentSlide(3)"></span>
+              <span class="dot" onclick="currentSlide(4)"></span>
+              <span class="dot" onclick="currentSlide(5)"></span>
+              <span class="dot" onclick="currentSlide(6)"></span>
+              <span class="dot" onclick="currentSlide(7)"></span>
+              <span class="dot" onclick="currentSlide(8)"></span>
+
+            </div>
+
+
+        <script>
+        var slideIndex = 1;
+
+        function showSlides(n) {
+          var i;
+
+          // Calling the slides and dots
+          var slides = document.getElementsByClassName("mySlides");
+          var dots = document.getElementsByClassName("dot");
+
+          // If the last slide is reached and user clicks on next, go back to the first one.
+          if (n > slides.length) {
+          slideIndex = 1
+          }
+
+          // If the first slide is displayed and user clicks on previous, go to the last one.
+          if (n < 1) {
+          slideIndex = slides.length
+          }
+
+          // Don't display the slides that aren't active
+          for (i = 0; i < slides.length; i++) {
+              slides[i].style.display = "none";
+          }
+
+          // Make the dot active on which slide the slideshow is currently
+          for (i = 0; i < dots.length; i++) {
+              dots[i].className = dots[i].className.replace(" active", "");
+          }
+
+          // Display the slides as blocks
+          slides[slideIndex-1].style.display = "block";
+          dots[slideIndex-1].className += " active";
+        }
+
+        // Function for the next and previous buttons
+        function plusSlides(n) {
+          showSlides(slideIndex += n);
+        }
+
+        // Function for the click-ability on the dots
+        function currentSlide(n) {
+          showSlides(slideIndex = n);
+        }
+
+        // Calling the function with the right starting number
+        showSlides(slideIndex);
+        </script>
+
+
+    {% endblock %}
+
+<!--***************************************************************-->
+

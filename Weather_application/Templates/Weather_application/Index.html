@@ -1,0 +1,46 @@
+<!-- File for home page where the base.html is implemented -->
+
+{% extends "Weather_application/Base.html" %}
+
+  {% block title %}
+  <title>
+    Huidig weerbeeld
+  </title>
+  {% endblock %}
+
+<!--***************************************************************-->
+
+  {% block navbar %}
+  <div class="header-right">
+    <a class="active" href="{% url 'home' %}">Huidig weerbeeld</a>
+    <a href="{% url 'weekly-forecast' %}">Zevendaags weerbeeld</a>
+    <a href="{% url 'rain' %}">Regengrafiek</a>
+  </div>
+  {% endblock %}
+
+<!--***************************************************************-->
+
+          {% block form %}
+          <form action="/current_city/" method="post" class="col-md">
+            {% csrf_token %}
+            <div class="import-group">
+              <input id="" type="text" class="form-control" name="city_name" placeholder="Kies je plaatsnaam: ">
+              <div class="input-group-btn">
+                <button type="submit" class="btn btn-primary">Zoek</button>
+              </div>
+            </div>
+          </form>
+          {% endblock %}
+
+
+      {% block info_card %}
+      <div class="card">
+        <p>
+          Welkom op onze website! In de onderstaande zoekbalk kunt u de gewenste stad invoeren voor de actuele weersinformatie.
+        </p>
+      </div>
+      {% endblock %}
+
+      {% block weather_info %} {% endblock %}
+
+<!--***************************************************************-->
